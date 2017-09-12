@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Mesas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+         <h:form id="formListar">
+
+            <p:outputLabel value="Mesa: "/>
+            
+            <p:selectOneMenu id="listaMesas" value="#{mesaControle.mesaSelecionada}"
+                             converter="MesaConverter" required="true" requiredMessage="Selecione uma Mesa">
+                <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+                <f:selectItems value="#{mesaControle.mesas}" 
+                                       var="item" 
+                                       itemValue="#{item}"                     
+                                       itemLabel="#{item.numero}"/>  
+            </p:selectOneMenu>
+            
+            <p:commandButton value="Listar Pedidos" 
+                             action="#{mesaControle.listarTodos}"
+                             update="formListar, :formTabela" />
+            <p/>
+                
+            <p:messages id="mensagem" showIcon="false" closable="true" />
+        </h:form>
+        <h:form id="formCadastro">
+                        
+            <p:outputLabel value="Numero da Mesa: "/>
+            <p:inputText value="#{mesaControle.novaMesa.numero}"
+                             required="true" requiredMessage="Numero Obrigatório"
+                             maxlength="3" />
+                <p:commandButton value="Salvar" action="#{mesaControle.inserir}"
+                                 update="formCadastro, :formListar" />
+        </h:form>
+        
+        <h:form id="formPedido">
+                        
+            <p:outputLabel value="Pedidos: "/>
+            <p:inputText value="#{mesaControle.novaMesa.numero}"
+                             required="true" requiredMessage="Insira o Pedido"
+                             maxlength="3" />
+                <p:commandButton value="Salvar" action="#{mesaControle.inserir}"
+                                 update="formPedido" />
+        </h:form>
+        <p/>
+        <h:form id="formTabela">
+            <p:dataTable id="tabPedidos" emptyMessage="Nenhum Pedido"
+                         var="ped" value="#{mesaControle.listaPedidos}">
+                <p:column headerText="Código: ">
+                    <h:outputText value="#{ped.codigo}"/>
+                </p:column>
+                <p:column headerText="Nome: ">
+                    <h:outputText value="#{ped.produto.nomeProduto}"/>
+                </p:column>
+ 
+            </p:dataTable>
+            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:outputPanel style="width: 100%; text-align:center" layout="block"> 
+                    <p:commandButton value="sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:outputPanel>
+            </p:confirmDialog>
+        </h:form>
+    </h:body>
+</html>
+
