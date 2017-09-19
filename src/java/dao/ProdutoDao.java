@@ -34,4 +34,32 @@ public class ProdutoDao implements Serializable {
         manager.close();
         return true;
     }
+    
+     public List<Produto> listarProdutos(){
+        EntityManager manager = JpaUtil.getEntityManager();
+        CriteriaQuery<Produto> query = manager.getCriteriaBuilder().createQuery(Produto.class);
+        query.select(query.from(Produto.class));
+        List<Produto> lista = manager.createQuery(query).getResultList();
+        manager.close();
+        return lista;
+    }
+   
+      public Produto buscarNome(String produto){
+        Produto retorno;
+        manager = JpaUtil.getEntityManager();
+        String sql = "SELECT p FROM Produto p WHERE p.nomeProduto = :nome";
+        TypedQuery<Produto> query = manager.createQuery(sql, Produto.class); 
+        query.setParameter("nome", produto);
+        retorno = query.getSingleResult();
+        manager.close();
+        return retorno;
+    }
+      
+//     public void alterar(Produto produto) {
+//        manager = JpaUtil.getEntityManager();
+//        manager.getTransaction().begin();
+//        produto = manager.merge(produto);
+//        manager.getTransaction().commit();
+//        manager.close();
+//    }
 }

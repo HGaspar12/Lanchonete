@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.List;
 import modelo.Produto;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -54,5 +55,13 @@ public class ProdutoDaoTest {
 //      ProdutoDao dao = new ProdutoDao();
 //      dao.excluir(novoProduto);
 //      }
+    
+    @Test
+    public void testlistar(){
+        List<Produto> produtos = new ProdutoDao().listarProdutos();
+        for(Produto m:produtos){
+            System.out.println(m.getCodigo());
+        }
+    }
     
 }

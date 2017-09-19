@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastrar Pedido</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+                 <!-- CADASTRAR NOVO PEDIDO -->    
+        <h:form id="formPedido">
+            <outputLabel value="Cadastrar Novo Pedido: "/>
+            <br></br>
+            <p:outputLabel value="Produto : "/>
+            <p:selectOneMenu id="listaProdutos" value="#{mesaControle.produtoSelecionado}"
+                             converter="ProdutoConverter" required="true" requiredMessage="Selecione um Produto">
+                <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+                <f:selectItems value="#{mesaControle.listaProdutos}" 
+                                       var="pro" 
+                                       itemValue="#{pro}"                     
+                                       itemLabel="#{pro.nomeProduto}"/>  
+            </p:selectOneMenu>
+            <br></br>
+            <p:outputLabel value="Mesa: "/>
+            <p:selectOneMenu id="listaMesas" value="#{mesaControle.mesaSelecionada}"
+                             converter="MesaConverter" required="true" requiredMessage="Selecione uma Mesa">
+                <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+                <f:selectItems value="#{mesaControle.mesas}" 
+                                       var="item" 
+                                       itemValue="#{item}"                     
+                                       itemLabel="#{item.numero}"/>  
+            </p:selectOneMenu>
+            <br></br>
+            <p:commandButton value="Salvar" action="#{mesaControle.inserirPedido}"
+                                process="formPedido" update="formPedido" />
+            <p:messages></p:messages>
+           
+        </h:form>
+    </h:body>
+</html>

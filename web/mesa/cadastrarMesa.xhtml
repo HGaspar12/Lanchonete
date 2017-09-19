@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastrar Pedido</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <!-- CADASTRAR NOVA MESA -->
+        <h:form id="formCadastro">
+            <p:outputLabel value="Cadastrar Nova Mesa: "/><br></br>                        
+            <p:outputLabel value="Numero da Mesa: "/>
+            <p:inputText value="#{mesaControle.novaMesa.numero}"
+                             required="true" requiredMessage="Numero Obrigatório"
+                             maxlength="3" /><br></br>
+                <p:commandButton value="Salvar" action="#{mesaControle.inserir}"
+                                 update="formCadastro" />
+            
+        </h:form>
+    </h:body>
+</html>

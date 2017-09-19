@@ -8,27 +8,55 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import modelo.Mesa;
 import dao.MesaDao;
+import dao.ProdutoDao;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import modelo.Pedido;
+import modelo.Produto;
+import util.JpaUtil;
 
 @ManagedBean(name = "mesaControle")
 @ViewScoped
         
 public class MesaControle implements Serializable{
+
+    /**
+     * @return the dao2
+     */
+    public ProdutoDao getDao2() {
+        return dao2;
+    }
+
+    /**
+     * @param dao2 the dao2 to set
+     */
+    public void setDao2(ProdutoDao dao2) {
+        this.dao2 = dao2;
+    }
+
     private Mesa mesa; //mantem os dados da mesa
     private Mesa aux;
     private MesaDao dao; //usado para persistir
+    private ProdutoDao dao2;
     private List<Mesa> mesas;
     private List<Pedido> listaPedidos;
+    private List<Produto> listaProdutos;
     private Mesa mesaSelecionada;
     private Mesa novaMesa;
+    private Pedido novoPedido;
+    private Produto produtoSelecionado;
 
     public MesaControle(){
         mesa = new Mesa();
         dao = new MesaDao();
+        dao2 = new ProdutoDao();
         mesas = dao.listarTodos();
+        listaProdutos = dao2.listarProdutos();
         mesaSelecionada = new Mesa();
+        produtoSelecionado = new Produto();
         novaMesa = new Mesa();
+        novoPedido = new Pedido();
         
     }
       
@@ -39,6 +67,16 @@ public class MesaControle implements Serializable{
         getMesas().add(novaMesa);
         novaMesa = new Mesa();
     }
+    
+    public void inserirPedido(){
+        novoPedido.setProduto(produtoSelecionado);
+        novoPedido.setMesa(mesaSelecionada);
+        mesaSelecionada.getPedidos().add(novoPedido);
+        getDao().alterar(mesaSelecionada);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Cadastrado", null));
+    }
+    
     public void listarTodos() {
         listaPedidos = mesaSelecionada.getPedidos();
     }
@@ -56,7 +94,34 @@ public class MesaControle implements Serializable{
         getMesas().remove(m);
     }
     
+    
+    /**
+     * @return the produtoSelecionado
+     */
+    public Produto getProdutoSelecionado() {
+        return produtoSelecionado;
+    }
 
+    /**
+     * @param produtoSelecionado the produtoSelecionado to set
+     */
+    public void setProdutoSelecionado(Produto produtoSelecionado) {
+        this.produtoSelecionado = produtoSelecionado;
+    }
+
+    /**
+     * @return the listaProdutos
+     */
+    public List<Produto> getListaProdutos() {
+        return listaProdutos;
+    }
+
+    /**
+     * @param listaProdutos the listaProdutos to set
+     */
+    public void setListaProdutos(List<Produto> listaProdutos) {
+        this.listaProdutos = listaProdutos;
+    }
     /**
      * @return the mesa
      */
@@ -153,6 +218,20 @@ public class MesaControle implements Serializable{
      */
     public void setNovaMesa(Mesa novaMesa) {
         this.novaMesa = novaMesa;
+    }
+
+    /**
+     * @return the novoPedido
+     */
+    public Pedido getNovoPedido() {
+        return novoPedido;
+    }
+
+    /**
+     * @param novoPedido the novoPedido to set
+     */
+    public void setNovoPedido(Pedido novoPedido) {
+        this.novoPedido = novoPedido;
     }
  
 }

@@ -13,7 +13,16 @@ import util.JpaUtil;
 public class PedidoDao implements Serializable {
     EntityManager manager;
     
-    public boolean inserir(Pedido novoPedido){
+    public boolean inserirPedido(Pedido novoPedido){
+        manager = JpaUtil.getEntityManager();
+        EntityTransaction tx = manager.getTransaction();
+        tx.begin();
+        manager.persist(novoPedido);
+        tx.commit();
+        manager.close();
+        return true;
+    }
+    public boolean inserirPedido(String novoPedido){
         manager = JpaUtil.getEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();
