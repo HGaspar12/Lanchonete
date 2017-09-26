@@ -72,21 +72,22 @@ public class MesaDaoTest {
 //      dao.excluir(mesas);
 //      }
     
-//        @Test
-//        public void buscarNumero(){
-//            Mesa mesa = new Mesa();
-//            mesa.setNumero("1");
-//            MesaDao dao = new MesaDao();
-//            Mesa temp = dao.buscarNumero(mesa);
-//            for(Pedido p:temp.getPedidos()){
-//                
-//                System.out.println(p.getQuantidade() +" "+ p.getProduto().getNomeProduto() +" "+ p.getQuantidade()*p.getProduto().getValorProduto());
-//                temp.setValorTotal(temp.getValorTotal() + p.getQuantidade()*p.getProduto().getValorProduto());
-//            }
-//            System.out.println("Valor a pagar: " + temp.getValorTotal());
-//            dao.alterar(temp);
-//            
-//        }
+        @Test
+        public void buscarNumero(){
+            Mesa mesa = new Mesa();
+            mesa.setNumero("1");
+            MesaDao dao = new MesaDao();
+            Mesa temp = dao.buscarNumero(mesa);
+            temp.setValorTotal(0);
+            for(Pedido p:temp.getPedidos()){
+                
+                System.out.println(p.getQuantidade() +" "+ p.getProduto().getNomeProduto() +" "+ p.getQuantidade()*p.getProduto().getValorProduto());
+                temp.setValorTotal(temp.getValorTotal() + p.getQuantidade()*p.getProduto().getValorProduto());
+            }
+            System.out.println("Valor a pagar: " + temp.getValorTotal());
+            dao.alterar(temp);
+            
+        }
         
         
     

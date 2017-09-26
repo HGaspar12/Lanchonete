@@ -13,7 +13,7 @@ public class ProdutoDao implements Serializable {
 
     EntityManager manager;
 
-    public boolean inserir(Produto novoProduto) {
+    public boolean inserirProduto(Produto novoProduto) {
         manager = JpaUtil.getEntityManager();
         EntityTransaction tx = manager.getTransaction();
         tx.begin();

@@ -26,7 +26,9 @@
             <p:commandButton value="Listar Pedidos" 
                              action="#{mesaControle.listarTodos}"
                              update=":formTabela" />
-            <p/>
+            <p/>                
+                <p:commandButton value="excluir"
+                                 actionListener="#{mesaControle.excluirMesa()}"/>
             <p:messages id="mensagem" showIcon="false" closable="true" />
             
             
@@ -64,6 +66,12 @@
             <button type="submit" class="btn btn-primary"> Cadastrar Pedido </button>
         </form>
         
+        <form method="get" action="cadastrarProduto.xhtml">
+            <button type="submit" class="btn btn-primary"> Cadastrar Produto </button>
+        </form>
+        <form method="get" action="excluirProduto.xhtml">
+            <button type="submit" class="btn btn-primary"> Excluir Produto </button>
+        </form>
     </h:body>
 </html>
 

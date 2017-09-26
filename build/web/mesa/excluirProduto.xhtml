@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Excluir Produto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <!-- EXCLUIR PRODUTO -->
+        
+        <h:form id="formListar">
+   <p:outputLabel value="Produtos: "/>
+   <p:selectOneMenu id="listaProdutos" value="#{mesaControle.produtoSelecionado}"
+                    converter="ProdutoConverter" required="true" requiredMessage="Selecione um Produto">
+       <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+       <f:selectItems value="#{mesaControle.listaProdutos}" 
+                              var="nome" 
+                              itemValue="#{nome}"                     
+                              itemLabel="#{nome.nomeProduto}"/>  
+              </p:selectOneMenu><br></br>
+              
+              <p:commandButton value="Excluir" action="#{mesaControle.excluirProduto()}"
+                                 />
+              
+       
+               
+                      
+            
+        </h:form>
+    </h:body>
+</html>

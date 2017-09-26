@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastrar Pedido</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <!-- CADASTRAR NOVO PRODUTO -->
+        <h:form id="formProduto">
+            <p:outputLabel value="Cadastrar Novo Produto: "/><br></br>                        
+            <p:outputLabel value="Nome do Produto: "/>
+            <p:inputText value="#{mesaControle.novoProduto.nomeProduto}"
+                             required="true" requiredMessage="Nome Obrigatório"
+                             maxlength="20" /><br></br>
+            <p:inputText value="#{mesaControle.novoProduto.valorProduto}"
+                             required="true" requiredMessage="Valor Obrigatório"
+                             maxlength="20" /><br></br>
+            
+            <p:commandButton value="Cadastrar" action="#{mesaControle.inserirProduto()}"
+                             update="formProduto" /> 
+                          
+                               
+            
+        </h:form>
+    </h:body>
+</html>

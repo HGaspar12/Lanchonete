@@ -41,19 +41,19 @@ public class PedidoDaoTest {
     }
 
 
-    
+//    
 //     @Test
 //    public void inserir() {
 //        Pedido novoPedido = new Pedido();
-//        novoPedido.setQuantidade(2);
+//        novoPedido.setQuantidade(8);
 //        Produto produto = new Produto();
-//        produto.setCodigo(6);
+//        produto.setCodigo(8);
 //        Mesa mesa = new Mesa();
 //        mesa.setCodigo(11);
 //        novoPedido.setMesa(mesa);
 //        novoPedido.setProduto(produto);
 //        PedidoDao dao = new PedidoDao();
-//        dao.inserir(novoPedido);
+//        dao.inserirPedido(novoPedido);
 //    }
     
 }
