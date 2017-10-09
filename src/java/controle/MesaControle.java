@@ -93,6 +93,9 @@ public class MesaControle implements Serializable{
     public void listarTodos() {
         listaPedidos = mesaSelecionada.getPedidos();
     }
+    public void listarTodosProdutos(){
+        listaProdutos = dao3.listarProdutos();
+    }
     
      public void preparaAlterar(Mesa m){
         setAux(m);
@@ -103,13 +106,15 @@ public class MesaControle implements Serializable{
     }
     
     public void excluirMesa(){
+        System.out.println(mesaSelecionada.getCodigo());
         getDao().excluir(mesaSelecionada);
         getMesas().remove(mesaSelecionada);
     }
-    public void excluirProduto(){
-        getDao3().excluir(produtoSelecionado);
+    public void excluirPedido(Pedido novoPedido){
+        System.out.println("ataeat");
+        dao2.excluir(novoPedido);
+        getListaPedidos().remove(novoPedido); 
     }
-    
     
     /**
      * @return the produtoSelecionado
@@ -276,6 +281,10 @@ public class MesaControle implements Serializable{
      */
     public void setDao3(ProdutoDao dao3) {
         this.dao3 = dao3;
+    }
+
+    private FacesMessage FacesMessage(FacesMessage.Severity SEVERITY_INFO, String aaa, String teste) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
 }

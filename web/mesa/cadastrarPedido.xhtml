@@ -37,8 +37,12 @@
             <br></br>
             <p:commandButton value="Salvar" action="#{mesaControle.inserirPedido}"
                                 process="formPedido" update="formPedido" />
-            <p:messages></p:messages>
+            <p:messages id="mensagem" showIcon="false" closable="true" />
+            
            
         </h:form>
+        <form method="get" action="mesaGerenciar.xhtml">
+            <button type="submit" class="btn btn-primary"> Voltar </button>
+        </form>
     </h:body>
 </html>

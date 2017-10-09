@@ -60,6 +60,7 @@ public class MesaDao implements Serializable {
         return true;
     }
     
+    
    public Mesa buscarNumero(Mesa mesa){
         Mesa retorno;
         manager = JpaUtil.getEntityManager();

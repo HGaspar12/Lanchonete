@@ -21,10 +21,13 @@
                              maxlength="20" /><br></br>
             
             <p:commandButton value="Cadastrar" action="#{mesaControle.inserirProduto()}"
-                             update="formProduto" /> 
-                          
-                               
+                             update="formProduto" />
+            <p:messages id="mensagem" showIcon="false" closable="true" />
+                              
             
         </h:form>
+        <form method="get" action="mesaGerenciar.xhtml">
+            <button type="submit" class="btn btn-primary"> Voltar </button>
+        </form>
     </h:body>
 </html>

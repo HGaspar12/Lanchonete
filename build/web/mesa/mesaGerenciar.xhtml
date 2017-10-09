@@ -32,6 +32,7 @@
             <p:messages id="mensagem" showIcon="false" closable="true" />
             
             
+            
         </h:form>
         <form method="get" action="cadastrarMesa.xhtml">
                 <button type="submit" class="btn btn-primary"> Cadastrar Nova Mesa </button>
@@ -48,7 +49,15 @@
                 <p:column headerText="Nome: ">
                     <h:outputText value="#{ped.produto.nomeProduto}"/>
                 </p:column>
- 
+                <p:column headerText="">
+                    <p:commandButton icon="ui-icon-trash" value="excluir"
+                                     actionListener="#{mesaControle.excluirPedido(ped)}"
+                                     update=":formTabela">
+                        <p:confirm header="Excluir pedido"
+                                   message="Tem certeza que deseja excluir este pedido?"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </p:column>
             </p:dataTable>
             <br></br>
             
@@ -71,6 +80,9 @@
         </form>
         <form method="get" action="excluirProduto.xhtml">
             <button type="submit" class="btn btn-primary"> Excluir Produto </button>
+        </form>
+        <form method="get" action="listarProdutos.xhtml">
+            <button type="submit" class="btn btn-primary"> Listar Produtos </button>
         </form>
     </h:body>
 </html>

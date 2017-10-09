@@ -24,11 +24,15 @@
               
               <p:commandButton value="Excluir" action="#{mesaControle.excluirProduto()}"
                                  />
+              <p:messages showIcon="false" closable="true"/>
               
        
                
                       
             
         </h:form>
+        <form method="get" action="mesaGerenciar.xhtml">
+            <button type="submit" class="btn btn-primary"> Voltar </button>
+        </form>
     </h:body>
 </html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Listar Produtos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <h:form id="formTabelaProdutos">
+            <p:dataTable id="tabProdutos" emptyMessage="Nenhum Produto"
+                         var="pod" value="#{mesaControle.listaProdutos}">
+                <p:column headerText="Código: ">
+                    <h:outputText value="#{pod.codigo}"/>
+                </p:column>
+                <p:column headerText="Nome: ">
+                    <h:outputText value="#{pod.nomeProduto}"/>
+                </p:column>
+                <p:column headerText="Valor: ">
+                    <h:outputText value="#{pod.valorProduto}"/>
+                </p:column>
+ 
+            </p:dataTable>
+            <br></br>
+        </h:form>
+         <form method="get" action="mesaGerenciar.xhtml">
+            <button type="submit" class="btn btn-primary"> Voltar </button>
+        </form>
+    </body>
+</html>
