@@ -7,42 +7,52 @@
     <h:head>
         <title>Cadastrar Pedido</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
     <h:body>
-                 <!-- CADASTRAR NOVO PEDIDO -->    
-        <h:form id="formPedido">
-            <outputLabel value="Cadastrar Novo Pedido: "/>
-            <br></br>
-            <p:outputLabel value="Produto : "/>
-            <p:selectOneMenu id="listaProdutos" value="#{mesaControle.produtoSelecionado}"
-                             converter="ProdutoConverter" required="true" requiredMessage="Selecione um Produto">
-                <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
-                <f:selectItems value="#{mesaControle.listaProdutos}" 
-                                       var="pro" 
-                                       itemValue="#{pro}"                     
-                                       itemLabel="#{pro.nomeProduto}"
-                                       />
-                
-            </p:selectOneMenu>
-            <br></br>
-            <p:outputLabel value="Mesa: "/>
-            <p:selectOneMenu id="listaMesas" value="#{mesaControle.mesaSelecionada}"
-                             converter="MesaConverter" required="true" requiredMessage="Selecione uma Mesa">
-                <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
-                <f:selectItems value="#{mesaControle.mesas}" 
-                                       var="item" 
-                                       itemValue="#{item}"                     
-                                       itemLabel="#{item.numero}"/>  
-            </p:selectOneMenu>
-            <br></br>
-            <p:commandButton value="Salvar" action="#{mesaControle.inserirPedido}"
-                                process="formPedido" update="formPedido" />
-            <p:messages id="mensagem" showIcon="false" closable="true" />
-            
-           
-        </h:form>
-        <form method="get" action="mesaGerenciar.xhtml">
-            <button type="submit" class="btn btn-primary"> Voltar </button>
-        </form>
+        <div id="container">
+             
+            <div id="textoTopo"> 
+                <h1> Sistema Interno de Gerenciamento</h1>
+                <h2> Cadastro de Pedido</h2>
+            </div>
+            <div id="cor-texto">
+            <!-- CADASTRAR NOVO PEDIDO -->    
+            <h:form id="formPedido">
+                <outputLabel value="Cadastrar Novo Pedido: "/>
+                <br></br>
+                <p:outputLabel value="Produto : "/>
+                <p:selectOneMenu id="listaProdutos" value="#{mesaControle.produtoSelecionado}"
+                                 converter="ProdutoConverter" required="true" requiredMessage="Selecione um Produto">
+                    <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+                    <f:selectItems value="#{mesaControle.listaProdutos}" 
+                                   var="pro" 
+                                   itemValue="#{pro}"                     
+                                   itemLabel="#{pro.nomeProduto}"
+                                   />
+
+                </p:selectOneMenu>
+                <br></br>
+                <p:outputLabel value="Mesa: "/>
+                <p:selectOneMenu id="listaMesas" value="#{mesaControle.mesaSelecionada}"
+                                 converter="MesaConverter" required="true" requiredMessage="Selecione uma Mesa">
+                    <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+                    <f:selectItems value="#{mesaControle.mesas}" 
+                                   var="item" 
+                                   itemValue="#{item}"                     
+                                   itemLabel="#{item.numero}"/>  
+                </p:selectOneMenu>
+                <br></br>
+                <p:commandButton value="Salvar" action="#{mesaControle.inserirPedido}"
+                                 process="formPedido" update="formPedido" />
+                <p:messages id="mensagem" showIcon="false" closable="true" />
+
+
+            </h:form>
+            <form method="get" action="mesaGerenciar.xhtml">
+                <button type="submit" class="btn btn-primary"> Voltar </button>
+            </form>
+            </div>
+        </div>
     </h:body>
 </html>

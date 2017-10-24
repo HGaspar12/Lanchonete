@@ -32,12 +32,13 @@ public class PedidoDao implements Serializable {
         return true;
     }
     
-        public boolean excluir(Pedido novopedido){
+    public boolean excluir(Pedido novopedido){
         manager = JpaUtil.getEntityManager();
         EntityTransaction tx = manager.getTransaction(); 
         tx.begin();
         // recupera a referência ao objeto
-        Pedido temp = manager.find(Pedido.class, novopedido.getProduto());
+        Pedido temp = manager.find(Pedido.class, novopedido.getCodigo());
+        System.out.println(temp.getCodigo());
         manager.remove(temp);
         tx.commit();
         manager.close();

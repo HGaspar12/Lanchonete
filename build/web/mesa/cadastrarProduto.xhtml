@@ -7,27 +7,32 @@
     <h:head>
         <title>Cadastrar Pedido</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
     <h:body>
-        <!-- CADASTRAR NOVO PRODUTO -->
-        <h:form id="formProduto">
-            <p:outputLabel value="Cadastrar Novo Produto: "/><br></br>                        
-            <p:outputLabel value="Nome do Produto: "/>
-            <p:inputText value="#{mesaControle.novoProduto.nomeProduto}"
-                             required="true" requiredMessage="Nome Obrigatório"
-                             maxlength="20" /><br></br>
-            <p:inputText value="#{mesaControle.novoProduto.valorProduto}"
-                             required="true" requiredMessage="Valor Obrigatório"
-                             maxlength="20" /><br></br>
-            
-            <p:commandButton value="Cadastrar" action="#{mesaControle.inserirProduto()}"
-                             update="formProduto" />
-            <p:messages id="mensagem" showIcon="false" closable="true" />
-                              
-            
-        </h:form>
-        <form method="get" action="mesaGerenciar.xhtml">
-            <button type="submit" class="btn btn-primary"> Voltar </button>
-        </form>
+        <div id="container">
+            <div id="textoTopo"> 
+                <h1> Sistema Interno de Gerenciamento</h1>
+                <h2>Cadastrar Produto</h2>
+            </div>
+            <div id="cor-texto">
+                <!-- CADASTRAR NOVO PRODUTO -->
+                <h:form id="formProduto">                        
+                    <p:outputLabel value="Nome do Produto: "/>
+                    <p:inputText value="#{mesaControle.novoProduto.nomeProduto}"
+                                 required="true" requiredMessage="Nome Obrigatório"
+                                 maxlength="20" />
+                    <p:inputText value="#{mesaControle.novoProduto.valorProduto}"
+                                 required="true" requiredMessage="Valor Obrigatório"
+                                 maxlength="20" /><br></br><br></br>
+                    <p:commandButton value="Cadastrar" action="#{mesaControle.inserirProduto}"
+                                     update="formProduto" />
+                    <p:messages showIcon="false" closable="true" />         
+                </h:form>
+                <form method="get" action="mesaGerenciar.xhtml">
+                    <button type="submit" class="btn btn-primary"> Voltar </button>
+                </form>
+            </div>
+        </div>
     </h:body>
 </html>

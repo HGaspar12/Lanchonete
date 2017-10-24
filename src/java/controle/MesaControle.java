@@ -2,7 +2,7 @@ package controle;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -19,8 +19,8 @@ import util.JpaUtil;
 
 @ManagedBean(name = "mesaControle")
 @ViewScoped
-        
-public class MesaControle implements Serializable{
+
+public class MesaControle implements Serializable {
 
     /**
      * @return the dao2
@@ -50,7 +50,7 @@ public class MesaControle implements Serializable{
     private Produto novoProduto;
     private Produto produtoSelecionado;
 
-    public MesaControle(){
+    public MesaControle() {
         mesa = new Mesa();
         dao = new MesaDao();
         dao2 = new PedidoDao();
@@ -62,60 +62,82 @@ public class MesaControle implements Serializable{
         novaMesa = new Mesa();
         novoPedido = new Pedido();
         novoProduto = new Produto();
-        
+
     }
-      
-    public void inserir(){
+
+    public void inserir() {
         getDao().inserir(novaMesa);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mesa Cadastrada", null));
         getMesas().add(novaMesa);
         novaMesa = new Mesa();
     }
-    
-        public void inserirProduto(){
-            getDao3().inserirProduto(novoProduto);
+
+    public void inserirProduto() {
+        getDao3().inserirProduto(novoProduto);
         FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Cadastrado", null));
         getNovoProduto().add(novoProduto);
         novoProduto = new Produto();
+
     }
-    
-    
-    public void inserirPedido(){
+
+    public void inserirPedido() {
         getDao2().inserirPedido(novoPedido);
         novoPedido.setProduto(produtoSelecionado);
         novoPedido.setMesa(mesaSelecionada);
         mesaSelecionada.getPedidos().add(novoPedido);
         getDao().alterar(mesaSelecionada);
         FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Pedido Cadastrado", null));
     }
-    
+
     public void listarTodos() {
         listaPedidos = mesaSelecionada.getPedidos();
     }
-    public void listarTodosProdutos(){
+
+    public void fecharMesas() {
+        listaPedidos = mesaSelecionada.getPedidos();
+        mesaSelecionada.setValorTotal(0);
+        for (Pedido p : mesaSelecionada.getPedidos()) {
+            mesaSelecionada.setValorTotal(mesaSelecionada.getValorTotal() + p.getProduto().getValorProduto());
+        }
+    }
+
+    public void excluirProduto() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Excluido", null));
+        getDao3().excluir(produtoSelecionado);
+
+    }
+
+    public void listarTodosProdutos() {
         listaProdutos = dao3.listarProdutos();
     }
-    
-     public void preparaAlterar(Mesa m){
+
+    public void preparaAlterar(Mesa m) {
         setAux(m);
     }
-    
-    public void alterar(){
+
+    public void alterar() {
         getDao().alterar(getAux());
     }
-    
-    public void excluirMesa(){
-        System.out.println(mesaSelecionada.getCodigo());
+
+    public void excluirMesa() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mesa Excluida", null));
         getDao().excluir(mesaSelecionada);
         getMesas().remove(mesaSelecionada);
     }
-    public void excluirPedido(Pedido novoPedido){
-        System.out.println("ataeat");
-        dao2.excluir(novoPedido);
-        getListaPedidos().remove(novoPedido); 
+
+    public void excluirPedido(Pedido novoPedido) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Pedido Excluido", null));
+        mesaSelecionada.getPedidos().remove(novoPedido);
+        dao.alterar(mesaSelecionada);
+        getListaPedidos().remove(novoPedido);
     }
-    
+
     /**
      * @return the produtoSelecionado
      */
@@ -143,6 +165,7 @@ public class MesaControle implements Serializable{
     public void setListaProdutos(List<Produto> listaProdutos) {
         this.listaProdutos = listaProdutos;
     }
+
     /**
      * @return the mesa
      */
@@ -283,8 +306,6 @@ public class MesaControle implements Serializable{
         this.dao3 = dao3;
     }
 
-    private FacesMessage FacesMessage(FacesMessage.Severity SEVERITY_INFO, String aaa, String teste) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
- 
+   
+
 }

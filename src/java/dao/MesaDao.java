@@ -71,6 +71,7 @@ public class MesaDao implements Serializable {
         manager.close();
         return retorno;
     }
+   
    public Mesa buscarNumero(String mesa){
         Mesa retorno;
         manager = JpaUtil.getEntityManager();
@@ -89,6 +90,17 @@ public class MesaDao implements Serializable {
         manager.getTransaction().commit();
         manager.close();
     }
+   
+   public void fecharMesa(Mesa mesa){
+        Mesa temp = buscarNumero(mesa) ;
+        temp.setValorTotal(0);
+            for(Pedido p:temp.getPedidos()){
+                
+                System.out.println(p.getQuantidade() +" "+ p.getProduto().getNomeProduto() +" "+ p.getQuantidade()*p.getProduto().getValorProduto());
+                temp.setValorTotal(temp.getValorTotal() + p.getQuantidade()*p.getProduto().getValorProduto());
+            }
+            System.out.println("Valor a pagar: " + temp.getValorTotal());
+   }
     
 }   
 

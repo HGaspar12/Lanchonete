@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/src/java/controle/MesaControle.java</file>
-            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/web/mesa/cadastrarProduto.xhtml</file>
-            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/web/mesa/cadastrarMesa.xhtml</file>
-            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/web/mesa/listarProdutos.xhtml</file>
-            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/src/java/dao/PedidoDao.java</file>
-            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/src/java/dao/MesaDao.java</file>
-            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/src/java/modelo/Pedido.java</file>
+            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/web/mesa/fecharMesa.xhtml</file>
+            <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/web/resources/css/estilo.css</file>
             <file>file:/C:/Users/henri/Documents/NetBeansProjects/Lanchonete/web/mesa/mesaGerenciar.xhtml</file>
         </group>
     </open-files>

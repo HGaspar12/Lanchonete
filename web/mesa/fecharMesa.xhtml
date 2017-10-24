@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Fechar Mesa</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+    </h:head>
+    <div id="container">
+        <h:body>
+
+            <div id="textoTopo"> 
+                <h1> Sistema Interno de Gerenciamento</h1>
+                <h2>Fechar Mesa</h2>
+            </div>
+            <div id="cor-texto">
+            <h:form id="formListar">
+                <p:outputLabel value="Mesa: "/>
+                <p:selectOneMenu id="listaMesas" value="#{mesaControle.mesaSelecionada}"
+                                 converter="MesaConverter" required="true" requiredMessage="Selecione uma mesa">
+                    <f:selectItem itemValue="#{null}"  itemLabel="Selecione uma opção"/>
+                    <f:selectItems value="#{mesaControle.mesas}" 
+                                   var="item"
+                                   itemValue="#{item}"                      
+                                   itemLabel="#{item.numero}"/>  
+
+                </p:selectOneMenu>
+
+                <p:commandButton value="Fechar Conta" 
+                                 action="#{mesaControle.fecharMesas()}"
+                                 update=":formTabela" />
+
+                <p/>                
+                <p:messages id="mensagem" showIcon="false" closable="true" />
+
+
+
+
+            </h:form>
+            <h:form id="formTabela">
+                <p:dataTable id="tabPedidos" emptyMessage="Nenhum Pedido"
+                             var="ped" value="#{mesaControle.listaPedidos}">
+                    <p:column headerText="Código: ">
+                        <h:outputText value="#{ped.codigo}"/>
+                    </p:column>
+                    <p:column headerText="Nome: ">
+                        <h:outputText value="#{ped.produto.nomeProduto}"/>
+                    </p:column>
+                    <p:column headerText="Valor: ">
+                        <h:outputText value="#{ped.produto.valorProduto}"/>
+                    </p:column>
+                </p:dataTable>
+                <br></br>
+                <p:outputLabel  value="Valor total: #{mesaControle.mesaSelecionada.valorTotal}" />
+                <br></br>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:outputPanel style="width: 100%; text-align:center" layout="block"> 
+                        <p:commandButton value="sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:outputPanel>
+                </p:confirmDialog>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Fechar Mesa"
+                                 actionListener="#{mesaControle.excluirMesa()}" update=":formListar">
+                    <p:confirm header="Excluir pedido"
+                               message="Tem certeza que deseja fechar esta mesa?"
+                               icon="ui-icon-alert"/>
+
+
+                </p:commandButton>
+            </h:form>
+            <form method="get" action="mesaGerenciar.xhtml">
+                <button type="submit" class="btn btn-primary"> Voltar </button>
+            </form>
+                </div>
+        </h:body>
+    </div>
+</html>

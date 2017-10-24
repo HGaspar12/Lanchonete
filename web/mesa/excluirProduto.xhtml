@@ -7,32 +7,35 @@
     <h:head>
         <title>Excluir Produto</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
+    <div id="container">
+    <div id="textoTopo"> 
+            <h1> Sistema Interno de Gerenciamento</h1>
+        </div>
     <h:body>
+        <div id="cor-texto">
+        
         <!-- EXCLUIR PRODUTO -->
         
-        <h:form id="formListar">
-   <p:outputLabel value="Produtos: "/>
-   <p:selectOneMenu id="listaProdutos" value="#{mesaControle.produtoSelecionado}"
-                    converter="ProdutoConverter" required="true" requiredMessage="Selecione um Produto">
-       <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
-       <f:selectItems value="#{mesaControle.listaProdutos}" 
-                              var="nome" 
-                              itemValue="#{nome}"                     
-                              itemLabel="#{nome.nomeProduto}"/>  
-              </p:selectOneMenu><br></br>
-              
-              <p:commandButton value="Excluir" action="#{mesaControle.excluirProduto()}"
-                                 />
-              <p:messages showIcon="false" closable="true"/>
-              
-       
-               
-                      
-            
+    <h:form id="formListar">
+        <p:outputLabel value="Produtos: "/>
+        <p:selectOneMenu id="listaProdutos" value="#{mesaControle.produtoSelecionado}"
+                         converter="ProdutoConverter" required="true" requiredMessage="Selecione um Produto">
+            <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+            <f:selectItems value="#{mesaControle.listaProdutos}" 
+                                   var="nome" 
+                                   itemValue="#{nome}"                     
+                                   itemLabel="#{nome.nomeProduto}"/>  
+                   </p:selectOneMenu><br></br><br></br>
+            <p:commandButton value="Excluir" action="#{mesaControle.excluirProduto()}" 
+                             update="formListar"/><br></br>
+            <p:messages showIcon="false" closable="true"/>  
         </h:form>
         <form method="get" action="mesaGerenciar.xhtml">
             <button type="submit" class="btn btn-primary"> Voltar </button>
         </form>
+        </div>
     </h:body>
+        </div>
 </html>

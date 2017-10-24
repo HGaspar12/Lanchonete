@@ -7,21 +7,27 @@
     <h:head>
         <title>Cadastrar Pedido</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
     <h:body>
-        <!-- CADASTRAR NOVA MESA -->
-        <h:form id="formCadastro">
-            <p:outputLabel value="Cadastrar Nova Mesa: "/><br></br>                        
-            <p:outputLabel value="Numero da Mesa: "/>
-            <p:inputText value="#{mesaControle.novaMesa.numero}"
+        <div id="container">
+            <div id="textoTopo"> 
+                <h1> Sistema Interno de Gerenciamento</h1>
+                <h2>Cadastrar Nova Mesa</h2>
+            </div>
+            <!-- CADASTRAR NOVA MESA -->
+            <h:form id="formCadastro">                      
+                <div id="cor-texto"><p:outputLabel value="Numero da Mesa:"/></div>
+                <p:inputText value="#{mesaControle.novaMesa.numero}"
                              required="true" requiredMessage="Numero Obrigatório"
-                             maxlength="3" /><br></br>
+                             maxlength="3" /><br></br><br></br>
                 <p:commandButton value="Salvar" action="#{mesaControle.inserir}"
                                  update="formCadastro" />
-                <p:messages id="mensagem" showIcon="false" closable="true" />
-        </h:form>
-         <form method="get" action="mesaGerenciar.xhtml">
-            <button type="submit" class="btn btn-primary"> Voltar </button>
-        </form>
+                <p:messages showIcon="false" closable="true" />
+            </h:form><br></br><br></br>
+            <form method="get" action="mesaGerenciar.xhtml">
+                <button type="submit" class="btn btn-primary"> Voltar </button>
+            </form>
+        </div>
     </h:body>
 </html>
